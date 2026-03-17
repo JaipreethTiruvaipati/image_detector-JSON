@@ -213,5 +213,7 @@ Uses:
 ```bash
 python Assessment_solution/ocr_analysis.py <input_jsonl_path> <output_dir> 
 ```
-
+> Example
+```bash
+python Assessment_solution/ocr_analysis.py ocr_converted.jsonl predicted_image_questions.txt
 ---
