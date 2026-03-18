@@ -1,0 +1,85 @@
+============================================================
+IMAGE-IN-QUESTION DETECTOR v2.0 — SUMMARY REPORT
+============================================================
+
+Total questions processed : 19,633
+Questions with images     : 428 (2.2%)
+Threshold used            : 0.5
+
+── CONFIDENCE TIERS ─────────────────────────────────────
+  Definite  (≥0.80) : 31
+  Probable  (0.60-0.80) : 122
+  Possible  (0.50-0.60) : 186
+  Unlikely  (<0.50) : 19,294
+
+── BY SUBJECT ───────────────────────────────────────────
+  unknown        :    94 flagged  (0.6% [WARNING: <10% — possible under-detection])
+  physics        :   219 flagged  (10.9%)
+  biology        :     4 flagged  (2.4% [WARNING: <10% — possible under-detection])
+  chemistry      :    51 flagged  (2.8% [WARNING: <10% — possible under-detection])
+  mathematics    :    60 flagged  (7.1% [WARNING: <10% — possible under-detection])
+
+── BY TOP SIGNAL ────────────────────────────────────────
+  S1 (Explicit visual references         ): 413
+  S4 (Semantic incompleteness            ): 8
+  S5 (Subject-specific LaTeX/symbols     ): 4
+  S3 (Orphaned option labels             ): 2
+  S2 (Spatial/deictic language           ): 1
+
+── SCORE DISTRIBUTION ───────────────────────────────────
+  0.0-0.2 : ████████████████████████████████████████ 18,901
+  0.2-0.4 :  282
+  0.4-0.6 :  297
+  0.6-0.8 :  122
+  0.8-1.0 :  31
+
+── ACCURACY ESTIMATES ───────────────────────────────────
+  Questions with 3+ signals fired : 324
+    → Estimated precision ≈ 92%+
+  Borderline questions (0.40-0.60) : 299
+    → Recommend human review
+
+── SIGNAL CO-OCCURRENCE ─────────────────────────────────
+  0 signal(s) fired: 2 questions
+  1 signal(s) fired: 3 questions
+  2 signal(s) fired: 99 questions
+  3 signal(s) fired: 160 questions
+  4 signal(s) fired: 121 questions
+  5 signal(s) fired: 40 questions
+  6 signal(s) fired: 3 questions
+
+── SIGNAL REDUNDANCY ────────────────────────────────────
+  (% = signal fires alone, no corroboration from others)
+  S1: fires   411x, alone     3x (0.7%)
+  S2: fires   284x, alone     0x (0.0%)
+  S3: fires   279x, alone     0x (0.0%)
+  S4: fires   165x, alone     0x (0.0%)
+  S5: fires    30x, alone     0x (0.0%)
+  S6: fires     0x, alone     0x (0%)
+  S7: fires    26x, alone     0x (0.0%)
+  S8: fires   164x, alone     0x (0.0%)
+  S9: fires    24x, alone     0x (0.0%)
+
+── TOP 10 MOST CONFIDENT DETECTIONS ─────────────────────
+   1. [0.950] unknown      641e97e5659bf924f8e70824  — FORCED HIGH: match-the-column pattern
+   2. [0.950] mathematics  64159d17b80044071f4c9aba  — FORCED HIGH: match-the-column pattern
+   3. [0.950] unknown      64159d17b80044071f4c9abc  — FORCED HIGH: match-the-column pattern
+   4. [0.950] chemistry    63da65f92eb3635281ce67ea  — FORCED HIGH: Orphaned labels + semantic gap (strong combo)
+   5. [0.950] chemistry    6232c3e81f1d6050de01ef3a  — FORCED HIGH: match-the-column pattern
+   6. [0.950] physics      622b1899b70e4b50e44fba07  — FORCED HIGH: Orphaned labels + semantic gap (strong combo)
+   7. [0.950] chemistry    63627cc8fd766b24f252c059  — FORCED HIGH: Orphaned labels + semantic gap (strong combo)
+   8. [0.950] physics      6363de52fd766b24f252f806  — FORCED HIGH: Orphaned labels + semantic gap (strong combo)
+   9. [0.950] physics      636bc449fd766b24f25453de  — FORCED HIGH: Orphaned labels + semantic gap (strong combo)
+  10. [0.950] chemistry    63a4a9161fa5e83cb0cd2faa  — FORCED HIGH: Orphaned labels + semantic gap (strong combo)
+
+── v2 IMPROVEMENTS ──────────────────────────────────────
+  + Pre-compiled regexes (~15% speed improvement)
+  + S8: HTML structural anomalies (empty TD cells, <br> clusters,
+        MathML density) — catches tables/grid images missed by S1-S7
+  + S9: Vector/spatial math (unit vectors, bounded regions,
+        cross products) — catches physics/maths diagram Qs
+        that never say 'figure' or 'diagram'
+  + Negative guard on S1: 'NOT shown'/'incorrectly drawn' now
+        reduce score instead of inflating it
+  + Subject tiebreaker: nucleus/circuit ambiguity resolved
+============================================================
